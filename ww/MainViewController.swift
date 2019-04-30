@@ -8,12 +8,12 @@
 
 import UIKit
 import SwipeableTabBarController
-var cell = CustomTableViewCell()
 
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-   fileprivate let images:[UIImage] = [
+    fileprivate let habbitsArray = ["habbit 1", "habbit 2", "habbit 3", "habbit 4","habbit 5", "habbit 6"]
+    fileprivate let images:[UIImage] = [
         UIImage(named: "cardiogram")!,
         UIImage(named: "open-book")!,
         UIImage(named: "weightlifting")!,
@@ -27,12 +27,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "TableViewCell")
 }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return habbitsArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as? CustomTableViewCell else {return UITableViewCell()}
-            
-            cell.habbitLabel.text = "Habbit"
+            cell.habbitLabel.text = habbitsArray[indexPath.row]
             cell.descriptionLabel.text = "description"
             cell.timeLabel.text = "10 min"
         return cell
